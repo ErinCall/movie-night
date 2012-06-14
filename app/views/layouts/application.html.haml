@@ -2,11 +2,15 @@
 %html
   %head
     %title Movie Night
-    = stylesheet_link_tag 'application', :media = 'all'
+    = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
 %body
-  %p.notice= notice
-  %p.alert= alert
+  .navbar.navbar-fixed-top
+    .navbar-inner
+      .container
+        %span.brand Movie Night
+        %ul.nav
 
-  = yield
+  .container
+    = yield
   = javascript_include_tag 'application'
