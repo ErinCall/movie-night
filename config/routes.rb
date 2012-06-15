@@ -1,4 +1,6 @@
 MovieNight::Application.routes.draw do
+  resources :movies
+
   devise_for :users
 
   # The priority is based upon order of creation:

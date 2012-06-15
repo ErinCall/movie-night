@@ -4,13 +4,16 @@
     %title Movie Night
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
-%body
-  .navbar.navbar-fixed-top
-    .navbar-inner
-      .container
-        %span.brand Movie Night
-        %ul.nav
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %span.brand Movie Night
+          %ul.nav
+            %li= link_to 'Nominate', new_movie_path
+            %li= link_to 'Vote', movies_path
 
-  .container
-    = yield
-  = javascript_include_tag 'application'
+    .container
+      = yield
+    = javascript_include_tag 'application'
+    = yield :javascript

@@ -1,0 +1,82 @@
+%h1 Nominate
+
+= form_tag '#', id: 'movie-search' do
+  .controls
+    .input-prepend
+      %span.add-on
+        %i.icon-search
+      = text_field_tag :query
+
+%p#no-results{style: 'display: none;'} No results
+
+%table.table.table-striped#search-results{style: 'display: none;'}
+  %thead
+    %tr
+      %th
+      %th Title
+      %th Year
+      %th Runtime
+      %th
+  %tbody#search-results-body
+
+- content_for :javascript do
+  :javascript
+    $(function() {
+      $('#movie-search').bind('submit', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+          url: 'http://api.rottentomatoes.com/api/public/v1.0/movies.json',
+          data: {
+            apiKey: 'q7z8hbstffshryw5y792skpt',
+            q: $('#query').val()
+          },
+          dataType: 'jsonp',
+          success: function(response) {
+            var results = $('#search-results-body');
+
+            if (response.total == 0) {
+              $('#no-results').show();
+              $('#search-results').hide();
+            } else {
+              $('#no-results').hide();
+              $('#search-results').show();
+              results.html('');
+
+              $(response.movies).each(function() {
+                results.append(JST['templates/search_result'](this));
+              });
+            }
+          }
+        })
+      });
+
+      $('.nomination-button').live('click', function(e) {
+        var button = $(this);
+
+        console.log(button.data());
+        e.preventDefault();
+        $.ajax({
+          url: '/movies',
+          type: 'post',
+          data: {
+            movie: {
+              rotten_tomatoes_id: button.data('rotten-tomatoes-id'),
+              title: button.data('title'),
+              year: button.data('year'),
+              runtime: button.data('runtime'),
+              thumbnail_url: button.data('thumbnail-url'),
+              detailed_url: button.data('detailed-url')
+            }
+          },
+          success: function(response) {
+            window.location = '/movies/' + response.id;
+          },
+          error: function(xhr) {
+            var response = $.parseJSON(xhr.responseText);
+
+            button.replaceWith('<p>' + response.errors.rotten_tomatoes_id + '</p>');
+          }
+        });
+      });
+    });
