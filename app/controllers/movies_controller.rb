@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
   respond_to :html, only: [:new, :show, :index]
 
   def create
-    respond_with Movie.create(params[:movie])
+    respond_with current_user.movies.create(params[:movie])
   end
 
   def show
