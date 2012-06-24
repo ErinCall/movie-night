@@ -3,6 +3,7 @@
   %td= movie.title
   %td= movie.year
   %td= movie.runtime
+  %td= movie.user.name
   %td.score= movie.plusminus_tally
   %td
     %a.btn.vote.up{'data-id' => movie.id, class: current_user.voted_for?(movie) ? 'active' : ''}
