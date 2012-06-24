@@ -12,7 +12,7 @@
       %dd= @movie.plusminus
       %dt
         %i.icon-thumbs-up
-      %dd= @movie.votes.where(vote: true).map(&:voter).map(&:name).join(',')
+      %dd= @movie.votes.where(vote: true).map(&:voter).map(&:name).join(', ')
       %dt
         %i.icon-thumbs-down
-      %dd= @movie.votes.where(vote: false).map(&:voter).map(&:name).join(',')
+      %dd= @movie.votes.where(vote: false).map(&:voter).map(&:name).join(', ')
