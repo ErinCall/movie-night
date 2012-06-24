@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    respond_with @movies = Movie.plusminus_tally.order('plusminus_tally DESC')
+    respond_with @movies = Movie.plusminus_tally.order('plusminus_tally DESC').includes(:user)
   end
 
   def vote
