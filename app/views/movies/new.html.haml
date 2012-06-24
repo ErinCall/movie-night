@@ -54,7 +54,6 @@
       $('.nomination-button').live('click', function(e) {
         var button = $(this);
 
-        console.log(button.data());
         e.preventDefault();
         $.ajax({
           url: '/movies',
