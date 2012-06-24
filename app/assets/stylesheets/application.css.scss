@@ -4,6 +4,10 @@ body {
   padding-top: 40px;
 }
 
+.table td {
+  vertical-align: middle;
+}
+
 .vote.active.up {
   background-color: #0f0;
 }
