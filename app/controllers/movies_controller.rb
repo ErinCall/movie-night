@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  before_filter :authenticate_user!
+
   respond_to :json
   respond_to :html, only: [:new, :show, :index]
 
