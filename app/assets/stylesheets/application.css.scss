@@ -3,3 +3,11 @@
 body {
   padding-top: 40px;
 }
+
+.vote.active.up {
+  background-color: #0f0;
+}
+
+.vote.active.down {
+  background-color: #f00;
+}

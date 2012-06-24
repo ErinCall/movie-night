@@ -1,5 +1,7 @@
 MovieNight::Application.routes.draw do
-  resources :movies
+  resources :movies do
+    post 'vote', on: :member
+  end
 
   devise_for :users
 

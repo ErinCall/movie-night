@@ -13,6 +13,13 @@ class MoviesController < ApplicationController
   end
 
   def index
-    respond_with @movies = Movie.all
+    respond_with @movies = Movie.plusminus_tally.order('plusminus_tally DESC')
+  end
+
+  def vote
+    movie = Movie.find(params[:id])
+    current_user.vote(movie, direction: params[:vote] == 'true' ? :up : :down, exclusive: true)
+
+    render json: {score: movie.plusminus}
   end
 end

@@ -4,4 +4,6 @@ class Movie < ActiveRecord::Base
   validates_uniqueness_of :rotten_tomatoes_id, :message => 'Movie has already been nominated'
 
   belongs_to :user
+
+  acts_as_voteable
 end

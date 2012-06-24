@@ -5,4 +5,26 @@
       %th Title
       %th Year
       %th Runtime
+      %th Score
+      %th
   %tbody= render @movies
+- content_for :javascript do
+  :javascript
+    $(function() {
+      $('.vote').bind('click', function(e) {
+        var button = $(this);
+
+        e.preventDefault();
+        $.ajax('movies/' + button.data('id') + '/vote', {
+          type: 'post',
+          data: {
+            vote: button.hasClass('up')
+          },
+          success: function(response) {
+            button.siblings().removeClass('active');
+            button.addClass('active');
+            button.parents('tr').children('.score').html(response['score']);
+          }
+        });
+      });
+    });
