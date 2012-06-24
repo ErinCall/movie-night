@@ -5,7 +5,9 @@ class MoviesController < ApplicationController
   respond_to :html, only: [:new, :show, :index]
 
   def create
-    respond_with current_user.movies.create(params[:movie])
+    respond_with(current_user.movies.create(params[:movie]).tap do |m|
+      current_user.vote_for(m)
+    end)
   end
 
   def show
