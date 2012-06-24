@@ -1,2 +1,18 @@
-%h1= @movie.title
-= image_tag @movie.detailed_url
+%h1= "#{@movie.title} (#{@movie.year})"
+.row
+  .span3= image_tag @movie.detailed_url
+  .span9
+    %dl.dl-horizontal
+      %dt Runtime
+      %dd= "#{@movie.runtime} minutes"
+      %dt
+        %i.icon-globe
+      %dd= link_to 'Rotten Tomatoes', @movie.rotten_tomatoes_url
+      %dt Score
+      %dd= @movie.plusminus
+      %dt
+        %i.icon-thumbs-up
+      %dd= @movie.votes.where(vote: true).map(&:voter).map(&:name).join(',')
+      %dt
+        %i.icon-thumbs-down
+      %dd= @movie.votes.where(vote: false).map(&:voter).map(&:name).join(',')

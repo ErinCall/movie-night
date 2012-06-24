@@ -1,6 +1,8 @@
 %tr
-  %td= link_to image_tag(movie.thumbnail_url), movie.rotten_tomatoes_url, target: '_blank'
-  %td= link_to movie.title, movie.rotten_tomatoes_url, target: '_blank'
+  %td= link_to image_tag(movie.thumbnail_url), movie_path(movie)
+  %td
+    = link_to movie.title, movie_path(movie)
+    = link_to content_tag(:i, '', class: 'icon-globe'), movie.rotten_tomatoes_url, target: '_blank'
   %td= movie.year
   %td= movie.runtime
   %td= movie.user.name
