@@ -6,10 +6,10 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'devise'
 gem 'thumbs_up', git: 'git://github.com/drewchandler/thumbs_up.git'
+gem 'sass-rails',   '~> 3.2.3'
+gem 'bootstrap-sass'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'bootstrap-sass'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer'
   gem 'ejs'
