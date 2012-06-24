@@ -73,9 +73,12 @@
             window.location = '/movies/' + response.id;
           },
           error: function(xhr) {
-            var response = $.parseJSON(xhr.responseText);
+            var response = $.parseJSON(xhr.responseText),
+                errors = [], k;
 
-            button.replaceWith('<p>' + response.errors.rotten_tomatoes_id + '</p>');
+            for (k in response.errors) errors.push(response.errors[k]);
+
+            button.replaceWith('<p class="error">' + errors.join('<br />') + '</p>');
           }
         });
       });
