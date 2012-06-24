@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
 
   def create
     respond_with(current_user.movies.create(params[:movie]).tap do |m|
-      current_user.vote_for(m)
+      current_user.vote_for(m) if !m.new_record?
     end)
   end
 
