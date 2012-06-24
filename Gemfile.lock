@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/drewchandler/thumbs_up.git
-  revision: 04a8f1d2bc58bd571a48325b362277465a77c57e
+  revision: 89c58acc6b5dcf1e9b340957def7b585298394b7
   specs:
     thumbs_up (0.5.7)
       activerecord
